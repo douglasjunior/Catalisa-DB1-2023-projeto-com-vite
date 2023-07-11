@@ -49,7 +49,7 @@ const Tarefas = () => {
   };
 
   return (
-    <div>
+    <div className='Tarefas_page'>
       <Form layout='vertical'>
         <InputText
           label="Buscar tarefa"
