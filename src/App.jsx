@@ -4,6 +4,10 @@ import Tarefas from './pages/Tarefas';
 import Inicial from './pages/Inicial';
 import Sobre from './pages/Sobre';
 import Heroi from './pages/Heroi';
+import Login from './pages/Login';
+import NotFound from './pages/NotFound';
+
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   return (
@@ -19,9 +23,21 @@ function App() {
       </ul>
       <Routes>
         <Route path='/' element={<Inicial />} />
-        <Route path='/tarefas' element={<Tarefas />} />
+
+        <Route
+          path='/tarefas'
+          element={
+            <PrivateRoute>
+              <Tarefas />
+            </PrivateRoute>
+          }
+        />
+
         <Route path='/sobre' element={<Sobre />} />
         <Route path='/heroi/:heroiId' element={<Heroi />} />
+        <Route path='/login' element={<Login />} />
+
+        <Route path='*' element={<NotFound />} />
       </Routes>
     </HashRouter>
   )

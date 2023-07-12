@@ -1,11 +1,15 @@
-import { useEffect, useState, useMemo } from 'react'
+import { useEffect, useState, useMemo } from 'react';
 import axios from 'axios';
+import { Form } from 'antd';
+import { useNavigate } from 'react-router-dom';
 
 import TarefaItem from '../components/TarefaItem';
 import InputText from '../components/InputText';
-import { Form } from 'antd';
+import fakeAuth from '../fake-auth';
 
 const Tarefas = () => {
+  const navigate = useNavigate();
+
   const [tarefas, setTarefas] = useState([]);
 
   const [busca, setBusca] = useState('');
@@ -48,8 +52,17 @@ const Tarefas = () => {
     );
   };
 
+  const handleSair = () => {
+    fakeAuth.isAuthenticated = false;
+    navigate('/login');
+  };
+
   return (
     <div className='Tarefas_page'>
+      <button onClick={handleSair}>
+        Sair
+      </button>
+      
       <Form layout='vertical'>
         <InputText
           label="Buscar tarefa"
